@@ -12,6 +12,5 @@ elif x == 1:
     print('Single')
 else:
     print('More')
-pass
 
 # end program
