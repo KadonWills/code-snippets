@@ -1,2 +1,3 @@
-# java-snippets
-Example of Java programs
+# Snippets
+
+Training Examples for SageCode Programming Course.

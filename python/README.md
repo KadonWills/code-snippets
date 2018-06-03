@@ -1,3 +1,3 @@
-# Sage Snippets
+# Snippets
 
 Training Examples for SageCode Programming Course.

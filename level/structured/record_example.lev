@@ -1,0 +1,36 @@
+--------------------------------------
+! demonstrate a vector of 10 records
+--------------------------------------
+-- we declare a record type  
+type Person: Record of (      
+  name:String,
+  age:Integer
+);
+
+program record_example is
+  person1,person2 :Person; --two variables of type Person
+  catalog: Vector(10) of @Person; --a collection of Persons
+begin
+  -- creating persons using record literals
+  person1 = (name:"John", age:21);
+  person2 = (name:"Vera", age:20);
+  print("#s and #s are lovers." <- (person1.name, person2.name));
+
+  -- create a person prototype using constructor Person()
+  person = (name:"John Doe", age:20);
+
+  -- create an array with 30 copy of person record
+  let
+    i:Integer;
+  loop
+    when i==10 exit;
+    catalog[i]=person; !make 10 clones
+    next i; 
+  end loop;
+  -- change first person using "with...do"
+  with catalog[0] do
+    name="Ispas Inca";
+    age="17"; 
+  done;
+  print(catalog[0].name -> "#s is single.");
+end program;

@@ -1,2 +1,3 @@
-# rust-snippets
-Rust programming examples
+# Snippets
+
+Training Examples for SageCode Programming Course.

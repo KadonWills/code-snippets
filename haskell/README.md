@@ -1,2 +1,3 @@
-# haskell-snippets
-Haskell programming examples
+# Snippets
+
+Training Examples for SageCode Programming Course.
