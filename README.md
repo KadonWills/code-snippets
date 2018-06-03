@@ -1,2 +1,3 @@
-# python-snippets
-Python training examples
+# SageCode Snippets
+
+SageCode Training Examples
