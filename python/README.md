@@ -1,2 +1,3 @@
-# python-snippets
-Python training examples
+# Sage Snippets
+
+Training Examples for SageCode Programming Course.
