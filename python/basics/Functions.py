@@ -6,9 +6,11 @@ def fib(n):
     print(a, end=' ')
     a, b = b, a+b
   print()
- 
+
+print('Fibonacci Sequence:')  
 fib(2000)
 
+print()
 
 #Calculate factorial of n
 def factorial(n):
@@ -19,4 +21,6 @@ def factorial(n):
   
 #Call factorial function and capture result
 result = factorial(5)
+
+print('Factorial of 5:')
 print(result)
