@@ -1,0 +1,39 @@
+CREATE OR REPLACE PACKAGE BODY bit_util IS
+
+  FUNCTION bitor(a IN BINARY_INTEGER, b IN BINARY_INTEGER) RETURN BINARY_INTEGER AS
+  BEGIN
+    RETURN a + b - bitand(a, b);
+  END bitor;
+
+  FUNCTION bitxor_old(a IN BINARY_INTEGER, b IN BINARY_INTEGER) RETURN BINARY_INTEGER AS
+  BEGIN
+    RETURN bitor(a, b) - bitand(a, b);
+  END bitxor_old;
+
+  FUNCTION bitxor(a IN BINARY_INTEGER, b IN BINARY_INTEGER) RETURN BINARY_INTEGER IS
+  BEGIN
+    RETURN((a + b) - bitand(a, b) * 2);
+  END bitxor;
+
+  FUNCTION bitnot(p IN BINARY_INTEGER) RETURN BINARY_INTEGER IS
+  BEGIN
+    RETURN(0 - p) - 1;
+  END bitnot;
+
+  FUNCTION bitnot(p IN BINARY_INTEGER, n IN INTEGER) RETURN NUMBER IS
+  BEGIN
+    RETURN power(2, n) +((0 - p) - 1);
+  END bitnot;
+
+  FUNCTION bitlsh(a IN BINARY_INTEGER, n IN BINARY_INTEGER) RETURN BINARY_INTEGER IS
+  BEGIN
+    RETURN a * power(2, n);
+  END bitlsh;
+
+  FUNCTION bitrsh(a IN BINARY_INTEGER, n IN BINARY_INTEGER) RETURN BINARY_INTEGER IS
+  BEGIN
+    RETURN floor(a / power(2, n));
+  END bitrsh;
+
+END bit_util;
+/

@@ -1,0 +1,10 @@
+whenever sqlerror exit failure rollback
+whenever oserror exit failure rollback
+
+set echo off
+
+@@bit_util.pks
+show errors
+
+@@bit_util.pkb
+show errors
