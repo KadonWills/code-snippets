@@ -21,19 +21,19 @@ type
 
 -- define a procedure
 procedure test(p_input:Integer,p_output: @Integer) is
-  b=TRUE, c=FALSE :Logic;   
+  b = TRUE, c = FALSE :Logic;   
 begin
-  p_output=p_input; !never 
+  p_output := p_input;
 end procedure;
 
 -- define a function  
 function func(x:Integer) => Integer is  
 begin
-  result=x; 
+  result := x; 
 end function;
 
 -- main procedure
-program workflow_example is
+procedure main is
   v=0  :Integer; 
   s="" :String;
   q=0  :Decimal Q15;
@@ -43,49 +43,49 @@ begin
   -- before steps use a statement
   test(1,?v1);
   q=func(v1); 
-  step S01:"switch statement" is     
-    switch all
-      case 1 == 1 then
-        continue;
-      case 2 == 2 then
-        break;
-      default
-        pass; 
-    end case;  
-  step S02:"switch statement" is  
-    let
-      v=0b11:Short;
-    switch top
-      case v in (0b11, 0b01) then 
-        pass;
-      case v==0x4FF then
-        pass;
-      default
-        print("switch is finished");
-    end switch;      
-  step S03:"loop statement" is
-    let
-      i=0:Byte;
-      j=0:Long;
-    loop
-      when (i==10 ) and (j==10) then exit;  
-      next i;
-      if (i>10)
-        i:0;
-        next j;
-      else
-        skip;    
-      end if;
-      print("i= #n. j= #n." <- (i,j));     
-    end loop;    
-  step S04:"test do section" is
-    let
-      v=0:Integer;
-    do  
-      if v == 3 then 
-        raise (1000, "message");
-      end if;   
-    done;     
+step:S01
+  switch all
+    case 1 == 1 then
+      continue;
+    case 2 == 2 then
+      break;
+    default
+      pass; 
+  end case;  
+step:S02
+  let
+    v=0b11:Short;
+  switch top
+    case v in (0b11, 0b01) then 
+      pass;
+    case v==0x4FF then
+      pass;
+    default
+      print("switch is finished");
+  end switch;      
+step:S03
+  let
+    i=0:Byte;
+    j=0:Long;
+  loop
+    when (i==10 ) and (j==10) then exit;  
+    next i;
+    if (i>10)
+      i:0;
+      next j;
+    else
+      skip;    
+    end if;
+    print("i= #n. j= #n." <- (i,j));     
+  end loop;    
+step:S04
+  let
+    v=0:Integer;
+  do  
+    if v == 3 then 
+      raise (1000, "message");
+    end if;   
+  done;     
 recover
   print("error in step:" & step.name);
   if error.code = 1000 then
@@ -95,6 +95,6 @@ recover
   end if;  
 finalize
   for step in trace loop
-    print("#s: #s has #s" <- (step.name, step.description, step.status));
+    print("#s has #s" <- (step.name, step.status));
   end loop;         
-end program;
+end procedure;

@@ -5,8 +5,8 @@ variable
   v1,v2:Integer;
   
 constant
-  c_test=10;
-  c_expected=3628800;
+  c_test:=10;
+  c_expected:=3628800;
 ------------------------------------------------------
 -- factorial using recursive function
 ------------------------------------------------------
@@ -16,39 +16,40 @@ constant
 function factorial1(n:Integer) => Integer is
 begin  
   if n == 0 then
-    result=1;
+    result := 1;
   else
-    result=n*factorial1(n-1);     
+    result := n*factorial1(n-1);     
   end if;    
-  return result;
 end function;
 ------------------------------------------------------
 -- calculate factorial using a loop
 ------------------------------------------------------
 function factorial2(n:Integer) => Integer is  
 begin 
-  result=1:Integer;
   loop
-    when n==0 exit;
-    result=(result*n);
-    n-=1;
+    if n == 0 then
+      result := 1;    
+      exit;
+    else
+      result := result * n;
+      n -= 1;    
+    end if;   
   end loop;
-  return result;
 end function;
 
 -- main program    
-program factorial_function is
+procedure main is
 begin
 --use recursive function
-  v1=factorial1(c_test);
+  v1 := factorial1(c_test);
   print (v1); !will print 3628800  
 --use loop based function
-  v2=factorial2(c_test);
+  v2 := factorial2(c_test);
   print (v1); !will print 3628800  
 --verify the results  
-  if (v1<>v2) or (v1<>c_expected) then
+  if (v1 <> v2) or (v1 <> c_expected) then
     print ("oh dear I'm wrong!");
   else
     print ("everything is alright!");  
   end if; 
-end program;
+end procedure;
