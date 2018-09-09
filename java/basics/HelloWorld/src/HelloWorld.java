@@ -11,7 +11,8 @@ public class HelloWorld {
 		System.out.println("Please enter a welcome message:");
 		//A new Scanner Object must be created before we can proceed
 		Scanner kb = new Scanner(System.in);
-		greeting = kb.nextLine();
+		greeting = kb.nextLine(); 
+		//This method uses buffered input to read in a String that the user has entered from the keyboard.
 		
 		//java does not auto add spaces like python does
 		System.out.println("Your new greeting is: "+ greeting);
